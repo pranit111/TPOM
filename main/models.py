@@ -3,6 +3,7 @@ from django.db import models
 
 class Student(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
+    email=models.EmailField(unique=True)
     roll_number = models.CharField(max_length=15, unique=True)
     department = models.CharField(max_length=100)
     year_of_study = models.IntegerField()

@@ -1,0 +1,43 @@
+
+{% load static %}<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login - College Placement & Training</title>
+    <link rel="stylesheet" href="{% static 'css/login_signup.css'%}">
+</head>
+<body>
+
+    <!-- Login Section -->
+    <section class="auth-section">
+        <div class="container">
+            <div class="auth-box">
+                <h2>Login to Your Account</h2>
+                <form action="{% url 'login' %}" method="POST">
+                    {% csrf_token %}
+                    <div class="input-group">
+                        <label for="username">Username</label>
+                        <input type="text" id="username" name="username" required>
+                    </div>
+                    <div class="input-group">
+                        <label for="password">Password</label>
+                        <input type="password" id="password" name="password" required>
+                    </div>
+                    <div class="input-group">
+                        <input type="submit" value="Login" class="btn-primary">
+                    </div>
+                    <p class="signup-link">Don't have an account? <a href="/sign_up">Sign Up</a></p>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer Section -->
+    <footer>
+        <div class="container">
+            <p>&copy; 2024 College Name. All Rights Reserved.</p>
+        </div>
+    </footer>
+</body>
+</html>
