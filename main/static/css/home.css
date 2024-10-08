@@ -21,7 +21,9 @@ header {
 }
 
 .logo img {
-    max-height: 60px;
+    width: 150px;      /* Set the desired width */
+    height: 90px;      /* Set the desired height */
+    object-fit: cover; /* Ensures the image covers the entire area without distortion */
 }
 
 nav {
@@ -48,7 +50,7 @@ nav {
 
 .btn-login {
     padding: 10px 20px;
-    background-color: #007BFF;
+    background-color: #7300ff;
     color: #fff;
     text-decoration: none;
     border-radius: 5px;
@@ -119,4 +121,70 @@ footer {
 
 footer p {
     color: #666;
+}
+.job-card {
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    width: 350px;
+    padding: 20px;
+    margin: 10px;
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.job-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
+}
+
+/* Job Header */
+.job-header {
+    border-bottom: 1px solid #e9ecef;
+    padding-bottom: 10px;
+    margin-bottom: 15px;
+}
+
+.job-title {
+    margin: 0;
+    font-size: 20px;
+    color: #343a40;
+}
+
+.company-name {
+    margin: 0;
+    font-size: 14px;
+    color: #6c757d;
+}
+
+/* Job Details */
+.job-details p {
+    margin: 5px 0;
+    font-size: 14px;
+    color: #495057;
+}
+
+/* Job Description */
+.job-description {
+    margin: 15px 0;
+    font-size: 14px;
+    color: #495057;
+}
+
+/* Job Footer */
+.job-footer {
+    text-align: center;
+}
+
+.apply-btn {
+    background-color: #007bff;
+    color: #fff;
+    padding: 10px 20px;
+    border-radius: 4px;
+    text-decoration: none;
+    font-weight: bold;
+    transition: background-color 0.3s;
+}
+
+.apply-btn:hover {
+    background-color: #0056b3;
 }

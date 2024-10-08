@@ -12,32 +12,55 @@
     <header>
         <div class="container">
             <div class="logo">
-                <img src="logo.png" alt="College Logo">
+                <img src="{% static 'images/logo.png'%}" alt="College Logo">
             </div>
             <nav>
                 <ul class="nav-links">
-                    <li><a href="#">Home</a></li>
+                    <li><a href="">Home</a></li>
                     <li><a href="#">Dashboard</a></li>
                     <li><a href="#">Opportunities</a></li>
                     <li><a href="#">Training</a></li>
                     <li><a href="#">Profile</a></li>
                     <li><a href="#">Support</a></li>
                 </ul>
-                <a href="#" class="btn-login">Login/Sign Up</a>
+                <a href="/login" class="btn-login">Login/Sign Up</a>
             </nav>
         </div>
     </header>
-
-    <!-- Hero Section -->
-    <section class="hero">
-        <div class="container">
-            <div class="hero-text">
-                <h1>Empowering Your Future with Career Opportunities</h1>
-                <p>Discover placement drives, training resources, and more to build a successful career.</p>
-                <a href="#" class="btn-primary">Get Started</a>
+        <!-- Hero Section -->
+        <section class="hero">
+            <div class="container">
+                <div class="hero-text">
+                    <h1>Empowering Your Future with Career Opportunities</h1>
+                    <p>Discover placement drives, training resources, and more to build a successful career.</p>
+                    <a href="#" class="btn-primary">Get Started</a>
+                </div>
             </div>
+        </section>
+    <div style="display: flex;">
+        {% for job in jobs %}
+    <div class="job-card">
+        <div class="job-header">
+            <h3 class="job-title">{{job.title}}</h3>
+            <p class="company-name">{{job.company}}</p>
         </div>
-    </section>
+        <div class="job-details">
+            <p><strong>Location:</strong>{{job.location}}</p>
+            <p><strong>Salary:</strong> {{job.salary}}</p>
+            <p><strong>Type:</strong>{{job.job_type}}</p>
+        </div>
+        <div class="job-description">
+            <p>{{job.description}}</p>
+        </div>
+        <div class="job-footer">
+            <a href="job_details/{{job.id}}" class="apply-btn">Apply Now</a>
+        </div>
+    </div>
+    {% endfor %}
+    
+</div>
+    
+
 
     <!-- Footer Section (Optional) -->
     <footer>

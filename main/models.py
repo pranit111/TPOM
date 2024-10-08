@@ -1,22 +1,46 @@
 from django.contrib.auth.models import User
 from django.db import models
 
-class Student(models.Model):
-    user = models.OneToOneField(User, on_delete=models.CASCADE)
-    email=models.EmailField(unique=True)
-    roll_number = models.CharField(max_length=15, unique=True)
-    department = models.CharField(max_length=100)
-    year_of_study = models.IntegerField()
-    resume = models.FileField(upload_to='resumes/')
-    skills = models.ManyToManyField('Skill', related_name='students')
+class Experience(models.Model):
+    title = models.CharField(max_length=100)  # e.g., "Intern"
+    company = models.CharField(max_length=255)  # e.g., "ABC Corp"
+    duration = models.CharField(max_length=50)  # e.g., "June 2023 - August 2023"
+    responsibilities = models.TextField()
 
     def __str__(self):
-        return self.user.username
+        return f"{self.title} at {self.company}"
+        
 class Skill(models.Model):
     name = models.CharField(max_length=100, unique=True)
 
     def __str__(self):
-        return self.name        
+        return self.name
+
+class Application(models.Model):
+    job_post = models.ForeignKey('JobPost', on_delete=models.CASCADE)
+    student = models.ForeignKey('Student', on_delete=models.CASCADE, related_name='applications')
+    status = models.CharField(max_length=50)  # e.g., "Pending", "Accepted", "Rejected"
+
+    def __str__(self):
+        return f"Application for {self.job_post.title} - {self.status}"
+
+class Student(models.Model):
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
+    email = models.EmailField(unique=True)  # Ensure email is unique
+    roll_number = models.CharField(max_length=15, unique=True)
+    department = models.CharField(max_length=100)
+    year_of_study = models.IntegerField()  # e.g., 1 for first year, 2 for second year, etc.
+    resume = models.FileField(upload_to='resumes/', blank=True, null=True)
+    skills = models.ManyToManyField(Skill, related_name='students', blank=True)
+    degree = models.CharField(max_length=255, blank=True, null=True)  # Optional field
+    institution = models.CharField(max_length=255, blank=True, null=True)  # Optional field
+    year_of_graduation = models.IntegerField(blank=True, null=True)  # Optional field
+    phone_number = models.CharField(max_length=15, blank=True, null=True)  # Optional field
+    feedback = models.TextField(blank=True, null=True)  # Feedback from companies or training
+
+    def __str__(self):
+        return self.user.username
+        
 class Company(models.Model):
     name = models.CharField(max_length=255)
     description = models.TextField()
@@ -34,7 +58,32 @@ class JobPost(models.Model):
     posted_date = models.DateTimeField(auto_now_add=True)
     application_deadline = models.DateTimeField()
     required_skills = models.ManyToManyField('Skill', related_name='job_posts')
+    salary=models.CharField(max_length=255)
+    job_requirements=models.TextField(max_length=1000)
     eligibility_criteria = models.TextField()
+    job_responsibilities=models.TextField(max_length=1000)
+    # Job Type Choices
+    FULL_TIME = 'Full-Time'
+    PART_TIME = 'Part-Time'
+    CONTRACT = 'Contract'
+    INTERNSHIP = 'Internship'
+    FREELANCE = 'Freelance'
+    
+    JOB_TYPE_CHOICES = [
+        (FULL_TIME, 'Full-Time'),
+        (PART_TIME, 'Part-Time'),
+        (CONTRACT, 'Contract'),
+        (INTERNSHIP, 'Internship'),
+        (FREELANCE, 'Freelance'),
+    ]
+    
+    # Job Type Field
+    job_type = models.CharField(
+        max_length=10,
+        choices=JOB_TYPE_CHOICES,
+        default=FULL_TIME,
+    )
+
     
     def __str__(self):
         return f"{self.title} at {self.company.name}"
@@ -46,6 +95,7 @@ class TrainingProgram(models.Model):
     instructor = models.CharField(max_length=255)
     skills_taught = models.ManyToManyField(Skill, related_name='training_programs')
     students = models.ManyToManyField(Student, related_name='training_programs')
+
     prerequisite_skills = models.ManyToManyField(Skill, related_name='required_for_trainings', blank=True)
 
     def __str__(self):

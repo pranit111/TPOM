@@ -1,0 +1,94 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Job Details - College Placement & Training</title>
+    <link rel="stylesheet" href="{% static 'css/job_details.css' %}">
+</head>
+<body>
+    <!-- Header Section -->
+    <header>
+        <div class="container">
+            <div class="logo">
+                <img src="{% static 'images/logo_white_text.png' %}" alt="College Logo">
+            </div>
+            <nav>
+                <ul class="nav-links">
+                    <li><a href="/home">Home</a></li>
+                    <li><a href="#">Dashboard</a></li>
+                    <li><a href="#">Opportunities</a></li>
+                    <li><a href="#">Training</a></li>
+                    <li><a href="#">Profile</a></li>
+                    <li><a href="#">Support</a></li>
+                </ul>
+                
+            </nav>
+        </div>
+    </header>
+
+    <!-- Job Details Section -->
+    <section class="job-details">
+        <div class="container">
+            <!-- Job Overview -->
+            <div class="job-header">
+                <h1 class="job-title">{{job.title}}</h1>
+                <p class="company-name">{{job.company}}</p>
+                <div class="job-location">
+                    <p><strong>Location:</strong> {{job.location}}</p>
+                    <p><strong>Salary:</strong> {{job.salary}}</p>
+                    <p><strong>Type:</strong>{{job.job_type}}</p>
+                </div>
+                <div class="job-buttons">
+                    <a href="#" class="btn-primary">Apply Now</a>
+                    <a href="#" class="btn-secondary">Save Job</a>
+                </div>
+            </div>
+
+            <!-- Job Description -->
+            <div class="job-description">
+                <h2>Job Description</h2>
+                <p>{{job.description}}</p>
+            </div>
+
+            <!-- Responsibilities -->
+            <div class="job-responsibilities">
+                <h2>Responsibilities</h2>
+                <ul>
+                    {% for responsibilities in job.job_responsibilities.splitlines %}
+                    <li>{{ responsibilities }}</li>
+                {% endfor %}
+                </ul>
+            </div>
+
+            <!-- Job Requirements -->
+            <div class="job-requirements">
+                <h2>Job Requirements</h2>
+                <ul>{% for requirement in job.job_requirements.splitlines %}
+                    <li>{{ requirement }}</li>
+                {% endfor %}
+                 
+                </ul>
+            </div>
+
+            <!-- Skills Section -->
+            <div class="job-benefits">
+                <h2>Skills Required</h2>
+                <ul>
+                    {% for skill in job.required_skills.all %}
+                    <li>{{ skill.name }}{% if not forloop.last %}{% endif %}</li>
+                {% endfor %}
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer Section -->
+    <footer>
+        <div class="container">
+            <p>&copy; 2024 Training and Placement SCOE. All Rights Reserved.</p>
+        </div>
+    </footer>
+</body>
+</html>
