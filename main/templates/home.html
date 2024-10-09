@@ -14,16 +14,18 @@
             <div class="logo">
                 <img src="{% static 'images/logo.png'%}" alt="College Logo">
             </div>
+            <h1>Welcome,{{user}}</h1>
             <nav>
                 <ul class="nav-links">
                     <li><a href="">Home</a></li>
                     <li><a href="#">Dashboard</a></li>
                     <li><a href="#">Opportunities</a></li>
                     <li><a href="#">Training</a></li>
-                    <li><a href="#">Profile</a></li>
+                    <li><a href="profile">Profile</a></li>
                     <li><a href="#">Support</a></li>
                 </ul>
-                <a href="/login" class="btn-login">Login/Sign Up</a>
+                
+                <a href="/logout" class="btn-login">Logout</a>
             </nav>
         </div>
     </header>

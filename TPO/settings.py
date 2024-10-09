@@ -29,6 +29,8 @@ ALLOWED_HOSTS = []
 
 
 # Application definition
+# settings.py
+#LOGIN_REDIRECT_URL = 'login_req'
 
 INSTALLED_APPS = [
     'django.contrib.admin',

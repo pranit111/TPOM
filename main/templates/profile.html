@@ -1,0 +1,134 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container mt-5">
+    <h2>{{ student.user.username }}'s Profile</h2>
+
+    <!-- Personal Information Section -->
+    <section class="mt-4">
+        <h4>Personal Information</h4>
+        <ul class="list-group">
+            <li class="list-group-item"><strong>Name:</strong> {{ student.user.first_name }} {{ student.user.last_name }}</li>
+            <li class="list-group-item"><strong>Email:</strong> {{ student.email }}</li>
+            <li class="list-group-item"><strong>Roll Number:</strong> {{ student.roll_number }}</li>
+            <li class="list-group-item"><strong>Department:</strong> {{ student.department }}</li>
+            <li class="list-group-item"><strong>Year of Study:</strong> {{ student.year_of_study }}</li>
+            {% if student.phone_number %}
+            <li class="list-group-item"><strong>Phone Number:</strong> {{ student.phone_number }}</li>
+            {% endif %}
+            {% if student.resume %}
+            <li class="list-group-item">
+                <strong>Resume:</strong> <a href="{{ student.resume.url }}" target="_blank">Download Resume</a>
+            </li>
+            {% endif %}
+        </ul>
+    </section>
+
+    <!-- Academic Information Section -->
+    <section class="mt-4">
+        <h4>Academic Information</h4>
+        <ul class="list-group">
+            <li class="list-group-item"><strong>Degree:</strong> {{ student.degree }}</li>
+            <li class="list-group-item"><strong>Institution:</strong> {{ student.institution }}</li>
+            <li class="list-group-item"><strong>Year of Graduation:</strong> {{ student.year_of_graduation }}</li>
+        </ul>
+    </section>
+
+    <!-- Skills Section -->
+    <section class="mt-4">
+        <h4>Skills</h4>
+        <ul class="list-group">
+            {% for skill in student.skills.all %}
+                <li class="list-group-item">{{ skill.name }}</li>
+            {% empty %}
+                <li class="list-group-item">No skills added.</li>
+            {% endfor %}
+        </ul>
+    </section>
+
+    <!-- Experience Section -->
+    <section class="mt-4">
+        <h4>Experience</h4>
+        <ul class="list-group">
+            {% for experience in student.experience_set.all %}
+                <li class="list-group-item">
+                    <strong>{{ experience.title }}</strong> at <strong>{{ experience.company }}</strong><br>
+                    <small>{{ experience.duration }}</small>
+                    <p>{{ experience.responsibilities }}</p>
+                </li>
+            {% empty %}
+                <li class="list-group-item">No experience added.</li>
+            {% endfor %}
+        </ul>
+    </section>
+
+    <!-- Applications Section -->
+    <section class="mt-4">
+        <h4>Job Applications</h4>
+        <ul class="list-group">
+            {% for application in student.applications.all %}
+                <li class="list-group-item">
+                    <strong>{{ application.job_post.title }}</strong> at {{ application.job_post.company.name }}<br>
+                    <small>Status: {{ application.status }}</small><br>
+                    <small>Applied on: {{ application.applied_on }}</small>
+                    {% if application.interview_date %}
+                        <br><small>Interview Date: {{ application.interview_date }}</small>
+                    {% endif %}
+                    {% if application.interview_feedback %}
+                        <p>Feedback: {{ application.interview_feedback }}</p>
+                    {% endif %}
+                </li>
+            {% empty %}
+                <li class="list-group-item">No job applications yet.</li>
+            {% endfor %}
+        </ul>
+    </section>
+
+    <!-- Training Programs Section -->
+    <section class="mt-4">
+        <h4>Training Programs</h4>
+        <ul class="list-group">
+            {% for training in student.training_programs.all %}
+                <li class="list-group-item">
+                    <strong>{{ training.title }}</strong><br>
+                    <small>Instructor: {{ training.instructor }}</small><br>
+                    <small>{{ training.start_date|date:"F j, Y" }} - {{ training.end_date|date:"F j, Y" }}</small>
+                </li>
+            {% empty %}
+                <li class="list-group-item">No training programs enrolled.</li>
+            {% endfor %}
+        </ul>
+    </section>
+
+    <!-- Feedback Section -->
+    <section class="mt-4">
+        <h4>Feedback</h4>
+        <ul class="list-group">
+            {% for feedback in student.feedbacks.all %}
+                <li class="list-group-item">
+                    <strong>{{ feedback.company.name }}</strong> gave feedback on <strong>{{ feedback.placement_event.title }}</strong><br>
+                    <p>{{ feedback.content }}</p>
+                    <small>Rating: {{ feedback.rating }}/5</small>
+                </li>
+            {% empty %}
+                <li class="list-group-item">No feedback available.</li>
+            {% endfor %}
+        </ul>
+    </section>
+
+    <!-- Placement Events Section -->
+    <section class="mt-4">
+        <h4>Placement Events Attended</h4>
+        <ul class="list-group">
+            {% for event in student.placement_events.all %}
+                <li class="list-group-item">
+                    <strong>{{ event.title }}</strong> on {{ event.date|date:"F j, Y" }}<br>
+                    <small>Location: {{ event.location }}</small>
+                </li>
+            {% empty %}
+                <li class="list-group-item">No placement events attended.</li>
+            {% endfor %}
+        </ul>
+    </section>
+</div>
+{% endblock %}

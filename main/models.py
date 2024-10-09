@@ -25,14 +25,36 @@ class Application(models.Model):
         return f"Application for {self.job_post.title} - {self.status}"
 
 class Student(models.Model):
+    YEAR_CHOICES = [
+        ('1', 'First Year'),
+        ('2', 'Second Year'),
+        ('3', 'Third Year'),
+        ('4', 'Fourth Year'),
+    ]
+
+    DEPARTMENT_CHOICES = [
+        ('CSE', 'Computer Science Engineering'),
+        ('ECE', 'Electronics and Communication Engineering'),
+        ('ME', 'Mechanical Engineering'),
+        ('CE', 'Civil Engineering'),
+        # Add more departments as needed
+    ]
+
+    DEGREE_CHOICES = [
+        ('BTech', 'Bachelor of Technology'),
+        ('MTech', 'Master of Technology'),
+        ('BSc', 'Bachelor of Science'),
+        ('MSc', 'Master of Science'),
+        # Add more degrees as needed
+    ]
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     email = models.EmailField(unique=True)  # Ensure email is unique
     roll_number = models.CharField(max_length=15, unique=True)
-    department = models.CharField(max_length=100)
-    year_of_study = models.IntegerField()  # e.g., 1 for first year, 2 for second year, etc.
+    department = models.CharField(max_length=100 ,choices=DEPARTMENT_CHOICES)
+    year_of_study = models.CharField(max_length=100,choices=YEAR_CHOICES)  # e.g., 1 for first year, 2 for second year, etc.
     resume = models.FileField(upload_to='resumes/', blank=True, null=True)
     skills = models.ManyToManyField(Skill, related_name='students', blank=True)
-    degree = models.CharField(max_length=255, blank=True, null=True)  # Optional field
+    degree = models.CharField(max_length=255, blank=True, null=True,choices=DEGREE_CHOICES)  # Optional field
     institution = models.CharField(max_length=255, blank=True, null=True)  # Optional field
     year_of_graduation = models.IntegerField(blank=True, null=True)  # Optional field
     phone_number = models.CharField(max_length=15, blank=True, null=True)  # Optional field

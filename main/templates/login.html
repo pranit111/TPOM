@@ -14,7 +14,7 @@
         <div class="container">
             <div class="auth-box">
                 <h2>Login to Your Account</h2>
-                <form action="{% url 'login' %}" method="POST">
+                <form action="{% url 'login_view' %}" method="POST">
                     {% csrf_token %}
                     <div class="input-group">
                         <label for="username">Username</label>
@@ -29,8 +29,15 @@
                     </div>
                     <p class="signup-link">Don't have an account? <a href="/sign_up">Sign Up</a></p>
                 </form>
+                {% if messages %}
+                {% for message in messages %}
+                    <div class="alert" style="color: brown;">{{ message }}</div>
+                {% endfor %}
+            {% endif %}
             </div>
+        
         </div>
+    
     </section>
 
     <!-- Footer Section -->
