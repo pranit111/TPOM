@@ -1,0 +1,74 @@
+
+/* Heading styles */
+h1 {
+    font-size: 2.5em;  /* Adjusts font size */
+    margin: 20px 0;  /* Adds spacing above and below */
+    color: #333;  /* Sets the text color */
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;  /* Modern font family */
+    border-bottom: 2px solid #003366;  /* Adds a bottom border */
+    padding-bottom: 10px;  /* Space between text and border */
+    text-align: left;  /* Aligns text to the left */
+    transition: color 0.3s ease;  /* Smooth transition for hover effect */
+}
+
+/* Hover effect for heading */
+h1:hover {
+    color: #0158af;  /* Changes color on hover */
+}
+
+    table {
+        width: 100%;
+        border-collapse: collapse;
+        margin: 20px 0;
+        font-size: 1em;
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        overflow-x: auto; /* Ensures responsiveness */
+    }
+    
+    /* Table header */
+    table thead tr {
+        background-color: #0158af;
+        color: white;
+        text-align: left;
+    }
+    
+    table th, table td {
+        padding: 12px 15px;
+        border: 1px solid #ddd;
+    }
+    
+    /* Alternating row background */
+    table tbody tr:nth-child(even) {
+        background-color: #f3f3f3;
+    }
+    
+    /* Hover effect on rows */
+    table tbody tr:hover {
+        background-color: #f1f1f1fa;
+    }
+    
+    /* Links (for resume, LinkedIn, etc.) */
+    table td a {
+        color: #3498db;
+        text-decoration: none;
+        font-weight: bold;
+    }
+    
+    table td a:hover {
+        text-decoration: underline;
+    }
+    
+    /* Responsive handling for small screens */
+    @media screen and (max-width: 600px) {
+        table {
+            display: block;
+            width: 100%;
+            overflow-x: auto;
+            white-space: nowrap;
+        }
+    
+        table th, table td {
+            padding: 10px 5px;
+        }
+    }
