@@ -18,11 +18,11 @@
             <nav>
                 <ul class="nav-links">
                     <li><a href="">Home</a></li>
-                    <li><a href="#">Dashboard</a></li>
-                    <li><a href="#">Opportunities</a></li>
-                    <li><a href="#">Training</a></li>
-                    <li><a href="profile">Profile</a></li>
-                    <li><a href="#">Support</a></li>
+                    <li><a href="{% url 'dashboard'%}">Dashboard</a></li>
+                
+                    <li><a href="{% url 'training_home'%}">Training</a></li>
+                    <li><a href="{% url 'student_profile'%}">Profile</a></li>
+                    <li><a href="{% url 'help_support'%}">Support</a></li>
                 </ul>
                 
                 <a href="/logout" class="btn-login">Logout</a>

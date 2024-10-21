@@ -1,7 +1,7 @@
 from django import forms
 from django.contrib.auth.models import User
 from django.contrib.auth.forms import UserCreationForm
-from .models import Student
+from .models import *
 
 class UserSignupForm(UserCreationForm):
     email = forms.EmailField(required=True)
@@ -30,3 +30,20 @@ class StudentForm(forms.ModelForm):
             'phone_number': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Enter your phone number'}),
             
         }
+class ApplicationForm(forms.ModelForm):
+    class Meta:
+        model = Application
+        fields = [ 'linkedin', 'portfolio', 'resume','cover_letter']
+        widgets = {
+            'interview_date': forms.DateTimeInput(attrs={'type': 'datetime-local'}),
+            'linkedin': forms.URLInput(attrs={
+                'placeholder': 'Enter your LinkedIn profile URL',
+                'class': 'form-control'
+            }),
+            'portfolio': forms.URLInput(attrs={
+                'placeholder': 'Enter your Portfolio URL',
+                'class': 'form-control'
+            }),
+             
+        }  
+               

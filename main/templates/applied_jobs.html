@@ -1,0 +1,85 @@
+    <!-- Job application details here -->
+    {% load static %}<link rel="stylesheet" href="{% static 'css/tables.css' %}">
+
+
+<section class="dashboard-content">
+
+
+        <a href="{% url 'applied_jobs' %}"><h1>My Job Applications </h1></a>
+    
+       
+</section>
+{% if applications %}
+<table>
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Job Title</th>
+            <th>Status</th>
+            <th>Applied On</th>
+            <th>Interview Date</th>
+            <th>Resume</th>
+            <th>Cover Letter</th>
+            <th>LinkedIn</th>
+            <th>Portfolio</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for application in applications %}
+            <tr>
+                <td>{{ forloop.counter }}</td>
+                <td>{{ application.job_post.title }}</td>
+                 <td style="background-color: 
+                    {% if application.status == 'Hired' %} #c8fead; /* Green */
+                    {% elif application.status == 'Rejected' %} #febbad; /* Red */
+                    {% elif application.status == 'Applied' %} #add1fe; /* Blue */
+                    {% elif application.status == 'Shortlisted' %} #fbd491; /* Yellow */
+                    {% elif application.status == 'Interviewd' %} #fdfead; /* Yellow */
+                    {% else %} #000; /* Default color */
+                    {% endif %}">
+                    {{ application.status }}
+                </td>
+                <td>{{ application.applied_on|date:"Y-m-d H:i" }}</td>
+                <td>
+                    {% if application.interview_date %}
+                        {{ application.interview_date|date:"Y-m-d H:i" }}
+                    {% else %}
+                        N/A
+                    {% endif %}
+                </td>
+                <td>
+                    {% if application.resume %}
+                        <a href="{{ application.resume.url }}" target="_blank">View Resume</a>
+                    {% else %}
+                        N/A
+                    {% endif %}
+                </td>
+                <td>
+                    {% if application.cover_letter %}
+                        <p>{{ application.cover_letter|truncatewords:15 }}</p> <!-- Shows part of the cover letter -->
+                    {% else %}
+                        N/A
+                    {% endif %}
+                </td>
+                <td>
+                    {% if application.linkedin %}
+                        <a href="{{ application.linkedin }}" target="_blank">LinkedIn</a>
+                    {% else %}
+                        N/A
+                    {% endif %}
+                </td>
+                <td>
+                    {% if application.portfolio %}
+                        <a href="{{ application.portfolio }}" target="_blank">Portfolio</a>
+                    {% else %}
+                        N/A
+                    {% endif %}
+                </td>
+            </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% else %}
+<p>No job applications found.</p>
+{% endif %}
+

@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Training Programs - Placement & Training Website</title>
+    <link rel="stylesheet" href="{% static 'css/training_home.css' %}">
+</head>
+<body>
+    <!-- Header Section -->
+    <header class="header">
+        <div class="logo">Training & Placement</div>
+        <nav class="nav">
+            <a href="{% url 'home' %}">Home</a>
+            <a href="">Placements</a>
+            <a href="{% url 'training_home' %}">Training Programs</a>
+            <a href="{% url 'student_profile' %}">Profile</a>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <h1>Explore Training Programs to Enhance Your Skills</h1>
+        <p>Prepare for your dream job with industry-relevant courses.</p>
+        <div class="search-bar">
+            <form method="GET" action="{% url 'search_training_programs' %}">
+                <input type="text" name="q" placeholder="Search training programs..." value="{{ request.GET.q }}">
+                <button type="submit">Search</button>
+            </form>
+        </div>
+    </section>
+
+    <!-- Filter Section -->
+    
+
+    <!-- Featured Programs Section -->
+    <section class="featured-programs">
+        <h2>Featured Training Programs</h2>
+        <div class="program-grid">
+            {% for program in programs %}
+            <div class="program-card">
+                <h3>{{ program.title }}</h3>
+                
+               
+                <span>Start Date: {{ program.start_date|date:"d M Y" }}</span><br>
+               
+                
+                </span>
+                <button><a href="{% url 'training_programs' id=program.id %}"style="color: #fff;">Learn More</a></button>
+            </div>
+            {% endfor %}
+        </div>
+    </section>
+
+    <!-- Program Listing Section -->
+ 
+    <!-- Footer Section -->
+    <footer class="footer">
+    
+        <p>&copy; 2024 Training & Placement. All rights reserved.</p>
+    </footer>
+</body>
+</html>

@@ -1,0 +1,58 @@
+{%load static%}<link rel="stylesheet" href="{% static 'css/tables.css' %}">
+
+<section class="dashboard-content">
+    <!-- Job application details here -->
+
+    <a href="{% url 'rejection_insights'%}"><h1>Rejected Job Applications</h1></a>
+   
+</section>
+{% if applications %}
+<table>
+    <thead>
+        <tr>
+            <th>#</th>
+            <th>Job Title</th>
+            <th>Status</th>
+            <th>Applied On</th>
+            <th>Interview Date</th>
+            <th>Feedback/Reason</th>
+            <th>Resume</th>
+          
+        </tr>
+    </thead>
+    <tbody>
+        {% for application in applications %}
+            <tr>
+                <td>{{ forloop.counter }}</td>
+                <td>{{ application.job_post.title }}</td>
+                <td style="background-color: #febbad;">{{ application.status }}</td>
+                <td>{{ application.applied_on|date:"Y-m-d H:i" }}</td>
+                <td>
+                    {% if application.interview_date %}
+                        {{ application.interview_date|date:"Y-m-d H:i" }}
+                    {% else %}
+                        N/A
+                    {% endif %}
+                </td>
+                <td>
+                    {% if application.interview_feedback %}
+                        <p>{{ application.interview_feedback}}</p> <!-- Shows part of the feedback -->
+                    {% else %}
+                        N/A
+                    {% endif %}
+                </td>
+                
+                <td>
+                    {% if application.resume %}
+                    <a href="{{ application.resume.url }}" target="_blank">View Resume</a>
+                    {% else %}
+                        N/A
+                    {% endif %}
+                </td>
+            </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% else %}
+<p>No rejected job applications found.</p>
+{% endif %}

@@ -69,14 +69,12 @@
             {% for application in student.applications.all %}
                 <li class="list-group-item">
                     <strong>{{ application.job_post.title }}</strong> at {{ application.job_post.company.name }}<br>
-                    <small>Status: {{ application.status }}</small><br>
+                    
                     <small>Applied on: {{ application.applied_on }}</small>
                     {% if application.interview_date %}
                         <br><small>Interview Date: {{ application.interview_date }}</small>
                     {% endif %}
-                    {% if application.interview_feedback %}
-                        <p>Feedback: {{ application.interview_feedback }}</p>
-                    {% endif %}
+                
                 </li>
             {% empty %}
                 <li class="list-group-item">No job applications yet.</li>

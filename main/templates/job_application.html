@@ -12,7 +12,7 @@
     <header>
         <div class="container">
             <div class="logo">
-                <img src="{% static 'images/logo.png' %}" alt="College Logo">
+                <img src="{% static 'images/logo_white_text.png' %}" alt="College Logo">
             </div>
             <nav>
                 <ul class="nav-links">
@@ -23,7 +23,6 @@
                     <li><a href="#">Profile</a></li>
                     <li><a href="#">Support</a></li>
                 </ul>
-                <a href="#" class="btn-login">Login/Sign Up</a>
             </nav>
         </div>
     </header>
@@ -32,52 +31,44 @@
     <section class="job-application">
         <div class="container">
             <div class="job-details-header">
-                <h1>Apply for Backend Developer</h1>
-                <p class="company-name">InnovateX Solutions - Austin, TX</p>
+                <h1>Apply for {{job_post.title}}</h1>
+                <p class="company-name">{{job_post.company}}, {{job_post.location}}</p>
             </div>
 
             <div class="application-form-container">
-                <form action="" method="POST">
+               
                     {% csrf_token %}
-                    <div class="form-group">
-                        <label for="full_name">Full Name</label>
-                        <input type="text" id="full_name" name="full_name" placeholder="Enter your full name" required>
-                    </div>
+                    
+                    <form method="POST" action="{% url 'job_application_save' job_post_id=job_post.id%}" enctype="multipart/form-data">
+                        {% csrf_token %}
+                        <div class="form-group">
+                            {{ form.linkedin.label_tag }}  <!-- Render the label -->
+                            {{ form.linkedin }}  <!-- Render the input field -->
+                        </div>
+                
+                        <div class="form-group">
+                            {{ form.portfolio.label_tag }}
+                            {{ form.portfolio }}
+                        </div>
+                
+                        <div class="form-group">
+                            {{ form.resume.label_tag }}
+                            {{ form.resume }}
+                        </div>
+                
+                        <div class="form-group">
+                            Cover letter(optional):
+                            {{ form.cover_letter }}
+                        </div>
+                
+                        <div class="form-actions">
+                            <button type="submit" class="btn-submit" >Submit Application</button>
+                        </div>
+                        
+                    </form>
 
-                    <div class="form-group">
-                        <label for="email">Email</label>
-                        <input type="email" id="email" name="email" placeholder="Enter your email" required>
-                    </div>
-
-                    <div class="form-group">
-                        <label for="phone">Phone Number</label>
-                        <input type="tel" id="phone" name="phone" placeholder="Enter your phone number" required>
-                    </div>
-
-                    <div class="form-group">
-                        <label for="resume">Upload Resume</label>
-                        <input type="file" id="resume" name="resume" accept=".pdf,.doc,.docx" required>
-                    </div>
-
-                    <div class="form-group">
-                        <label for="cover_letter">Cover Letter</label>
-                        <textarea id="cover_letter" name="cover_letter" rows="5" placeholder="Write a cover letter (optional)"></textarea>
-                    </div>
-
-                    <div class="form-group">
-                        <label for="linkedin">LinkedIn Profile (optional)</label>
-                        <input type="url" id="linkedin" name="linkedin" placeholder="LinkedIn Profile URL">
-                    </div>
-
-                    <div class="form-group">
-                        <label for="portfolio">Portfolio (optional)</label>
-                        <input type="url" id="portfolio" name="portfolio" placeholder="Portfolio URL">
-                    </div>
-
-                    <div class="form-actions">
-                        <button type="submit" class="btn-submit">Submit Application</button>
-                    </div>
-                </form>
+                    
+               
             </div>
         </div>
     </section>

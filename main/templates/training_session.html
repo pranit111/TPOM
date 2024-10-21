@@ -1,0 +1,67 @@
+{% load static %}
+<section class="dashboard-content">
+    <h3>Training Sessions</h3>
+    <!-- Training sessions details here -->
+     <link rel="stylesheet" href="{%static 'css/taining_home.css'%}">
+</section>
+<style>.program-grid {
+    display: flex;
+    justify-content: space-between;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+
+.program-card {
+    background-color: white;
+    padding: 20px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    width: 48%;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    text-align: center;
+}
+
+.program-card h3 {
+    font-size: 20px;
+    margin-bottom: 10px;
+}
+
+.program-card p {
+    font-size: 16px;
+    margin-bottom: 15px;
+}
+
+.program-card span {
+    display: block;
+    font-size: 14px;
+    color: #6c757d;
+    margin-bottom: 15px;
+}
+
+.program-card button {
+    padding: 10px 20px;
+    background-color: #0033a1; /* Dark blue button */
+    color: rgb(255, 255, 255);
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.program-card button:hover {
+    background-color: #1d456d; /* Darker on hover */
+}
+</style>
+{% for program in programs %}
+<div class="program-card">
+    <h3>{{ program.title }}</h3>
+    
+   
+    <span>Start Date: {{ program.start_date|date:"d M Y" }}</span><br>
+   
+    
+    </span>
+    <button><a href="{% url 'training_programs' id=program.id %}"style="color: #fff;">Learn More</a></button>
+</div>
+{% endfor %}
+</div>
+</section>

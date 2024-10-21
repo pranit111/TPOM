@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ program.title }} - Training Program</title>
+    <link rel="stylesheet" href="{% static 'css/training_detail.css' %}">
+</head>
+<body>
+    <!-- Header Section -->
+    <header class="header">
+        <div class="logo">Training & Placement</div>
+        <nav class="nav">
+            <a href="{% url 'home' %}">Home</a>
+            <a href="{% url 'training_home' %}">Training Programs</a>
+            <a href="{% url 'student_profile' %}">Profile</a>
+        </nav>
+    </header>
+
+    <!-- Program Detail Section -->
+    <section class="program-detail">
+        <div class="container">
+            <h1>{{ program.title }}</h1>
+
+            <div class="program-info">
+                <div class="info-item">
+                    <strong>Instructor:</strong> {{ program.instructor }}
+                </div>
+                <div class="info-item">
+                    <strong>Start Date:</strong> {{ program.start_date|date:"d M Y" }}
+                </div>
+                <div class="info-item">
+                    <strong>End Date:</strong> {{ program.end_date|date:"d M Y" }}
+                </div>
+                <div class="info-item">
+                    <strong>Duration:</strong> {{ program.duration }} weeks
+                </div>
+                <div class="info-item">
+                    <strong>Skills Taught:</strong>
+                    <ul>
+                        {% for skill in program.skills_taught.all %}
+                            <li>{{ skill.name }}</li>
+                        {% endfor %}
+                    </ul>
+                </div>
+                <div class="info-item">
+                    <strong>Description:</strong>
+                    <p>{{ program.description|truncatewords:20 }}</p>
+                </div>
+                <div class="info-item">
+                    <strong>Prerequisite Skills:</strong>
+                    {% if program.prerequisite_skills.all %}
+                        <ul>
+                            {% for skill in program.prerequisite_skills.all %}
+                                <li>{{ skill.name }}</li>
+                            {% endfor %}
+                        </ul>
+                    {% else %}
+                        None
+                    {% endif %}
+                </div>
+            </div>
+
+            <!-- Enroll Now Section with JavaScript -->
+            <div class="enroll-section">
+                <button class="enroll-btn" onclick="confirmEnroll()">Enroll Now</button>
+            </div>
+        </div>
+    </section>
+    {% if messages %}
+    <div class="messages">
+        {% for message in messages %}
+            <div class="message {{ message.tags }}">{{ message }}</div>
+        {% endfor %}
+    </div>
+{% endif %}
+
+
+    <!-- Enrollment Confirmation Popup -->
+    <div id="enrollPopup" class="popup" style="display:none;">
+        <div class="popup-content">
+            <p>Are you sure you want to enroll in this program?</p>
+            <button onclick="submitEnroll()">Yes</button>
+            <button onclick="closePopup()">No</button>
+        </div>
+    </div>
+
+    <!-- Footer Section -->
+    <footer class="footer">
+        <p>&copy; 2024 Training & Placement. All rights reserved.</p>
+    </footer>
+
+    <script>
+        // Show the enrollment confirmation popup
+        function confirmEnroll() {
+            document.getElementById('enrollPopup').style.display = 'block';
+        }
+
+        // Close the popup
+        function closePopup() {
+            document.getElementById('enrollPopup').style.display = 'none';
+        }
+
+        // Function to submit enrollment form
+        function submitEnroll() {
+            window.location.href = "{% url 'enroll_program' program.id %}";
+        }
+    </script>
+</body>
+</html>

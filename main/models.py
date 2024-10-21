@@ -116,7 +116,7 @@ class TrainingProgram(models.Model):
     end_date = models.DateTimeField()
     instructor = models.CharField(max_length=255)
     skills_taught = models.ManyToManyField(Skill, related_name='training_programs')
-    students = models.ManyToManyField(Student, related_name='training_programs')
+    students = models.ManyToManyField(Student, related_name='training_programs',null=True,blank=True)
 
     prerequisite_skills = models.ManyToManyField(Skill, related_name='required_for_trainings', blank=True)
 
@@ -130,6 +130,11 @@ class Application(models.Model):
     status = models.CharField(max_length=50, choices=[('Applied', 'Applied'), ('Shortlisted', 'Shortlisted'), ('Interviewed', 'Interviewed'), ('Rejected', 'Rejected'), ('Hired', 'Hired')], default='Applied')
     interview_date = models.DateTimeField(null=True, blank=True)
     interview_feedback = models.TextField(null=True, blank=True)
+    linkedin = models.URLField(null=True,blank=True)
+    portfolio= models.URLField(null=True,blank=True)
+    resume = models.FileField(upload_to='resumes/', null=True, blank=True)
+    cover_letter = models.TextField(null=True,blank=True)
+
 
     def __str__(self):
         return f"{self.student.user.username} - {self.job_post.title}"

@@ -1,0 +1,23 @@
+<section class="dashboard-header">
+    <h1>Welcome, {{ user.first_name }}!</h1>
+    <p>Here's an overview of your activities:</p>
+</section>
+<section class="dashboard-content">
+    <div class="card">
+        <h3>Job Applications</h3>
+        <p>{{ job_applications_count }} Applications submitted</p>
+        <a href="{% url 'applied_jobs' %}">View Applications</a>
+    </div>
+    <div class="card">
+        <h3>Training Programs</h3>
+        <p>{{ training_sessions_count }} Programs attended</p>
+        <a href="{% url 'training_sessions' %}">View Training</a>
+    </div>
+    <div class="card">
+        <h3>Upcoming Interviews</h3>
+        <p>{{ upcoming_interviews_count }} Interviews scheduled</p>
+        <a href="{% url 'applied_jobs' %}">View Interviews</a>
+    </div>
+    
+    <!-- Add more cards or content as needed -->
+</section>

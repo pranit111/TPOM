@@ -47,11 +47,7 @@
                     </div>
 
                 </form>
-                <form method="POST" enctype="multipart/form-data">
-                    {% csrf_token %}
-                    {{ form.as_p }}  <!-- Renders the form fields -->
-                    <button type="submit">Create Student Profile</button>
-                </form>
+              
             </div>
         </div>
     </section>
