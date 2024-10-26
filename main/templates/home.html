@@ -9,12 +9,12 @@
 </head>
 <body>
     <!-- Header Section -->
-    <header>
+    <header style="color: 002f6c;">
         <div class="container">
             <div class="logo">
-                <img src="{% static 'images/logo.png'%}" alt="College Logo">
+                <img src="{% static 'images/logo_white_text.png'%}" alt="College Logo">
             </div>
-            <h1>Welcome,{{user}}</h1>
+            <h1 style="color: aliceblue;">Welcome,{{user}}</h1>
             <nav>
                 <ul class="nav-links">
                     <li><a href="">Home</a></li>
@@ -35,11 +35,14 @@
                 <div class="hero-text">
                     <h1>Empowering Your Future with Career Opportunities</h1>
                     <p>Discover placement drives, training resources, and more to build a successful career.</p>
-                    <a href="#" class="btn-primary">Get Started</a>
+                     <button id="scrollButton"id="scrollButton" class="btn-primary">Get Started</button>  
                 </div>
             </div>
         </section>
-    <div style="display: flex;">
+    <div style=" display: grid;
+    grid-template-columns: repeat(5, 1fr); /* 5 equal columns */
+    gap: 20px; /* Space between cards */
+    margin-bottom: 20px;">
         {% for job in jobs %}
     <div class="job-card">
         <div class="job-header">
@@ -52,7 +55,7 @@
             <p><strong>Type:</strong>{{job.job_type}}</p>
         </div>
         <div class="job-description">
-            <p>{{job.description}}</p>
+            
         </div>
         <div class="job-footer">
             <a href="job_details/{{job.id}}" class="apply-btn">Apply Now</a>
@@ -62,13 +65,25 @@
     
 </div>
     
+<script> function scrollPage(amount) {
+    window.scrollBy({
+        top: amount, // How much to scroll by
+        left: 0,
+        behavior: 'smooth' // Smooth scrolling effect
+    });
+}
 
+// Attach event listener to the button
+document.getElementById('scrollButton').addEventListener('click', function() {
+    scrollPage(770); // Adjust the 500 to scroll more or less
+});</script>
 
     <!-- Footer Section (Optional) -->
-    <footer>
-        <div class="container">
-            <p>&copy; 2024 Training and Placement SCOE. All Rights Reserved.</p>
-        </div>
-    </footer>
+   
 </body>
+<footer>
+    <div class="container">
+        <p style="color: aliceblue;">&copy; 2024 Training and Placement SCOE. All Rights Reserved.</p>
+    </div>
+</footer>
 </html>

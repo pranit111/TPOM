@@ -24,10 +24,7 @@
         <h1>Explore Training Programs to Enhance Your Skills</h1>
         <p>Prepare for your dream job with industry-relevant courses.</p>
         <div class="search-bar">
-            <form method="GET" action="{% url 'search_training_programs' %}">
-                <input type="text" name="q" placeholder="Search training programs..." value="{{ request.GET.q }}">
-                <button type="submit">Search</button>
-            </form>
+            
         </div>
     </section>
 
@@ -35,7 +32,7 @@
     
 
     <!-- Featured Programs Section -->
-    <section class="featured-programs">
+    <section class="featured-programs" >
         <h2>Featured Training Programs</h2>
         <div class="program-grid">
             {% for program in programs %}

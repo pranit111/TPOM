@@ -8,22 +8,25 @@
 
 /* Container */
 .container {
-    width: 90%;
-    max-width: 1200px;
-    margin: 0 auto;
+padding: 40px;
 }
 
 /* Header */
 header {
-    background-color: #fff;
+    background-color: #002f6c;
     padding: 20px 0;
     border-bottom: 1px solid #e0e0e0;
+    
 }
 
 .logo img {
-    width: 150px;      /* Set the desired width */
-    height: 90px;      /* Set the desired height */
-    object-fit: cover; /* Ensures the image covers the entire area without distortion */
+      /* Set the desired width */
+    height: 150px;      /* Set the desired height */
+    object-fit: contain;
+    margin: -20px;
+    margin-top: -60px;
+    margin-bottom: 20px;
+     /* Ensures the image covers the entire area without distortion */
 }
 
 nav {
@@ -35,22 +38,25 @@ nav {
 .nav-links {
     list-style-type: none;
     display: flex;
-    gap: 20px;
+    margin-top: 20px;
+    gap: 70px;
 }
 
 .nav-links li a {
     text-decoration: none;
-    color: #333;
+    color: #ffffff;
     font-weight: bold;
+    transition: color 0.3s ease, transform 0.3s ease; /* Smooth transition for both color and scale */
 }
 
 .nav-links li a:hover {
-    color: #007BFF;
+    color: #0077ff;
+    transform: scale(2.2); /* Scale the text up by 10% */
 }
 
 .btn-login {
     padding: 10px 20px;
-    background-color: #7300ff;
+    background-color: #bd0c0c;
     color: #fff;
     text-decoration: none;
     border-radius: 5px;
@@ -58,7 +64,7 @@ nav {
 }
 
 .btn-login:hover {
-    background-color: #0056b3;
+    background-color: #850303;
 }
 
 /* Hero Section */
@@ -79,7 +85,7 @@ nav {
     left: 0;
     width: 100%;
     height: 100%;
-    background: rgba(0, 0, 0, 0.5);
+    background: rgba(3, 50, 151, 0.5);
     z-index: 1;
 }
 
@@ -113,23 +119,36 @@ nav {
 
 /* Footer */
 footer {
-    background-color: #f8f8f8;
+    background-color: #002f6c;
     text-align: center;
     padding: 20px 0;
     border-top: 1px solid #e0e0e0;
 }
 
 footer p {
-    color: #666;
+    color: #002f6c;
 }
+
+/* Job Cards Container (5-column Flexbox Grid) */
+.cards-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: space-between;
+}
+
+/* Job Card */
 .job-card {
     background-color: #fff;
     border-radius: 8px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    width: 350px;
+    flex: 0 1 calc(20% - 20px); /* Ensure each card takes 20% width, leaving space for gap */
     padding: 20px;
-    margin: 10px;
+    margin-bottom: 20px; /* Space below each card */
     transition: transform 0.3s, box-shadow 0.3s;
+    width: 350px;
+    height: 300px;
+    
 }
 
 .job-card:hover {

@@ -117,10 +117,10 @@ body {
 }
 
 .program-grid {
-    display: flex;
-    justify-content: space-between;
-    gap: 20px;
-    flex-wrap: wrap;
+    width: auto;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr); /* 2 equal columns */
+    gap: 20px; /* Space between cards */
 }
 
 .program-card {
@@ -128,7 +128,7 @@ body {
     padding: 20px;
     border: 1px solid #ddd;
     border-radius: 8px;
-    width: 48%;
+    width: 95%;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     text-align: center;
 }
