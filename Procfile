@@ -1,0 +1,1 @@
+web: gunicorn TPO.wsgi:application --log-file -
