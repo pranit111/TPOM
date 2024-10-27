@@ -1,0 +1,162 @@
+/* Basic Styles */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f0f4f8; /* Light background */
+}
+
+/* Header */
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px;
+    background-color: #1a3d6b; /* Dark blue header */
+    color: white;
+}
+
+.header .logo {
+    font-size: 24px;
+    font-weight: bold;
+}
+
+.header .nav a {
+    color: white;
+    margin-left: 20px;
+    text-decoration: none;
+    font-size: 16px;
+}
+
+.header .nav a:hover {
+    text-decoration: underline;
+}
+
+/* Program Detail Section */
+.program-detail {
+    padding: 40px;
+    background-color: grey;
+    color: #333;
+}
+
+.program-detail .container {
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.program-detail h1 {
+    font-size: 32px;
+    margin-bottom: 20px;
+}
+
+.program-detail p {
+    font-size: 18px;
+    line-height: 1.6;
+    margin-bottom: 30px;
+}
+
+.program-info {
+    margin-bottom: 30px;
+}
+
+.program-info .info-item {
+    font-size: 18px;
+    margin-bottom: 15px;
+}
+
+.program-info strong {
+    color: #1a3d6b;
+}
+
+.program-info ul {
+    list-style: disc;
+    margin-left: 20px;
+}
+
+.program-info ul li {
+    font-size: 16px;
+    margin-bottom: 5px;
+}
+
+/* Enroll Section */
+.enroll-section {
+    text-align: center;
+    margin-top: 40px;
+}
+
+.enroll-btn {
+    padding: 15px 30px;
+    background-color: #265a88; /* Dark blue button */
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-size: 18px;
+    cursor: pointer;
+}
+
+.enroll-btn:hover {
+    background-color: #1d456d;
+}
+
+/* Footer */
+.footer {
+    text-align: center;
+    padding: 20px;
+    background-color: #1a3d6b; /* Dark blue footer */
+    color: white;
+}
+/* Popup Styles */
+.popup {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.popup-content {
+    background-color: white;
+    padding: 20px;
+    border-radius: 8px;
+    text-align: center;
+}
+
+.popup-content p {
+    font-size: 18px;
+    margin-bottom: 20px;
+}
+
+.popup-content button {
+    padding: 10px 20px;
+    margin: 10px;
+    background-color: #0033a1;
+    color: white;
+    border: none;
+    cursor: pointer;
+}
+
+.popup-content button:hover {
+    background-color: #1d456d;
+}
+.messages {
+    margin: 20px;
+}
+
+.message {
+    padding: 10px;
+    border-radius: 5px;
+}
+
+.message.success {
+    background-color: #d4edda;
+    color: #155724;
+}
+
+.message.error {
+    background-color: #f8d7da;
+    color: #721c24;
+}
